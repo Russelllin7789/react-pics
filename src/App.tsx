@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "./Layout";
 import Homepage from "./pages/Homepage";
@@ -8,9 +7,6 @@ import Page404 from "./pages/Page404";
 import "./App.css";
 
 function App() {
-  // const [count, setCount] = useState(0)
-  const authKey = "VWNxSyMOJbaY4IG26sFJGzvKYaWzuyaQNYjvx8TQXLDfpsMGf45yaTkT";
-
   return (
     <>
       <BrowserRouter>
