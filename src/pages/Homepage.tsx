@@ -37,7 +37,7 @@ const Homepage: React.FC = () => {
         searchHandler={handleSearch}
       />
 
-      <div className="flex flex-wrap items-center justify-center max-w-[1200px] mt-10">
+      <div className="flex flex-wrap items-center justify-center mt-10 mx-20">
         {pictures &&
           pictures.map((pic) => <Picture key={pic.id} picture={pic} />)}
       </div>
