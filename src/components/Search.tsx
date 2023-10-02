@@ -1,11 +1,19 @@
-import React, { useState } from "react";
+import React from "react";
 
-const Search = () => {
-  const [searchTerm, setSearchTerm] = useState("");
+type Props = {
+  searchTerm: string;
+  setSearchTerm: React.Dispatch<React.SetStateAction<string>>;
+  searchHandler: (message: string) => void;
+};
 
+const Search: React.FC<Props> = ({
+  searchTerm,
+  setSearchTerm,
+  searchHandler,
+}) => {
   const handleSearch = (event: React.MouseEvent<Element, MouseEvent>) => {
     event.preventDefault();
-    console.log("here:", searchTerm);
+    searchHandler(searchTerm);
   };
 
   const handleSearchTermChange = (
