@@ -34,6 +34,23 @@ const Homepage: React.FC = () => {
     setPictures(data.data.photos);
   };
 
+  const fetchMorePhotos = async () => {
+    const newPage = page + 1;
+    setPage(page + 1);
+    let apiUrl = "";
+    if (searchTerm.trim()) {
+      apiUrl = `https://api.pexels.com/v1/search?query=${searchTerm}&page=${newPage}&per_page=15`;
+    } else {
+      apiUrl = `https://api.pexels.com/v1/curated?page=${newPage}&per_page=15`;
+    }
+    const data = await axios.get(apiUrl, {
+      headers: {
+        Authorization: authKey,
+      },
+    });
+    setPictures(pictures.concat(data.data.photos));
+  };
+
   useEffect(() => {
     getCuratedPics(1);
   }, []);
@@ -49,6 +66,14 @@ const Homepage: React.FC = () => {
       <div className="flex flex-wrap items-center justify-center mt-10 mx-20">
         {pictures &&
           pictures.map((pic) => <Picture key={pic.id} picture={pic} />)}
+      </div>
+      <div className="flex items-center justify-center mt-10">
+        <button
+          onClick={fetchMorePhotos}
+          className="bg-blue-400/70 text-white font-bold py-3 px-6 hover:bg-blue-700/60 rounded-lg text-lg"
+        >
+          See More
+        </button>
       </div>
     </div>
   );
