@@ -6,16 +6,25 @@ import Picture from "../components/Picture";
 
 const Homepage: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState("");
+  const [page, setPage] = useState(1);
   const [pictures, setPictures] = useState<IPicture[]>([]);
   const authKey = "VWNxSyMOJbaY4IG26sFJGzvKYaWzuyaQNYjvx8TQXLDfpsMGf45yaTkT";
 
-  const handleSearch = (searchTerm: string) => {
-    console.log("search word:", searchTerm);
+  const handleSearch = async (searchTerm: string) => {
+    const data = await axios.get(
+      `https://api.pexels.com/v1/search?query=${searchTerm}&page=1&per_page=15`,
+      {
+        headers: {
+          Authorization: authKey,
+        },
+      }
+    );
+    setPictures(data.data.photos);
   };
 
-  const getCuratedPics = async () => {
+  const getCuratedPics = async (pageNum: number) => {
     const data = await axios.get(
-      "https://api.pexels.com/v1/curated?page=1&per_page=15",
+      `https://api.pexels.com/v1/curated?page=${pageNum}&per_page=15`,
       {
         headers: {
           Authorization: authKey,
@@ -26,7 +35,7 @@ const Homepage: React.FC = () => {
   };
 
   useEffect(() => {
-    getCuratedPics();
+    getCuratedPics(1);
   }, []);
 
   return (

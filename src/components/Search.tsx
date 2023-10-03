@@ -13,6 +13,9 @@ const Search: React.FC<Props> = ({
 }) => {
   const handleSearch = (event: React.MouseEvent<Element, MouseEvent>) => {
     event.preventDefault();
+    if (!searchTerm.trim()) {
+      return;
+    }
     searchHandler(searchTerm);
   };
 
