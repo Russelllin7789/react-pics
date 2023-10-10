@@ -66,7 +66,9 @@ const Homepage: React.FC = () => {
 
       <div className="flex flex-wrap items-center justify-center mt-10 mx-20">
         {pictures &&
-          pictures.map((pic) => <Picture key={pic.id} picture={pic} />)}
+          pictures.map((pic, index) => (
+            <Picture key={`${pic.id}-${index}`} picture={pic} />
+          ))}
       </div>
       <div className="flex items-center justify-center mt-10">
         <Button
