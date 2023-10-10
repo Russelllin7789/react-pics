@@ -3,6 +3,7 @@ import axios from "axios";
 import IPicture from "../interface/IPicture";
 import Search from "../components/Search";
 import Picture from "../components/Picture";
+import Button from "../components/Button";
 
 const Homepage: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -68,12 +69,11 @@ const Homepage: React.FC = () => {
           pictures.map((pic) => <Picture key={pic.id} picture={pic} />)}
       </div>
       <div className="flex items-center justify-center mt-10">
-        <button
-          onClick={fetchMorePhotos}
-          className="bg-blue-400/70 text-white font-bold py-3 px-6 hover:bg-blue-700/60 rounded-lg text-lg"
-        >
-          See More
-        </button>
+        <Button
+          buttonText="See More"
+          buttonStyle="bg-blue-400/70 text-white font-bold py-3 px-6 hover:bg-blue-700/60 rounded-lg text-lg"
+          onClickHandler={fetchMorePhotos}
+        />
       </div>
     </div>
   );
